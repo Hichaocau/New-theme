@@ -1,4 +1,71 @@
 body {
-    background-color: var(--color-page-background);
-    color: #fff
+  background-color: var(--color-page-background);
+  color: #fff
+}
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.btn {
+  cursor: pointer;
+  border: 0;
+  border-radius: 100px;
+  padding: 0 24px;
+  font-family: var(--font-heading-family);
+  font-weight: var(--font-heading-weight);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: inherit;
+  word-break: break-all;
+  font-size: 16px;
+  line-height: 24px;
+}
+.btn-large {
+  min-height: var(--form-field);
+  font-size: var(--heading-5);
+}
+
+.btn:focus-visible:not(.btn-link) {
+  box-shadow: 0px 0px 0px 4px rgba(39, 239, 183, 0.2);
+  outline: 0;
+}
+.btn-primary {
+  color: var(--color-normal-text);
+  background: var(--color-primary);
+}
+.btn-secondary {
+  color: var(--color-primary);
+  background: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+}
+.btn-link {
+  background: transparent;
+  padding: 0;
+  color: var(--color-text-inverse);
+  text-decoration: underline;
+}
+.btn-primary:hover {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), #49F0C5;
+}
+.btn-primary:active {
+  box-shadow: 0px 0px 0px 4px rgba(39, 239, 183, 0.2);
+}
+.btn-secondary:hover {
+  box-shadow: 0px 0px 0px 3px rgba(39, 239, 183, 0.16);
+}
+.btn-secondary:active {
+  box-shadow: 0px 0px 0px 4px rgba(39, 239, 183, 0.2);
+}
+.btn-link:hover,
+.btn-link:active {
+  color: var(--color-primary);
+}
+@media (min-width: 769px) {
+  .btn:not(.btn-link) {
+    padding: 0 32px;
+  }
 }
