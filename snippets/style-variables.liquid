@@ -20,11 +20,24 @@
     --heading-5: calc(var(--font-body-size) * var(--type-scale));
     --form-field: 44px;
 
+    /* Layout */
+    --container-width: 1200px;
+    --gutter: 16;
+    --gutter-base: calc(var(--gutter) * var(--pixel-converter));
+    --gutter-x: calc(8 / var(--gutter) * var(--rem-converter));
+    --container-width: 1200px;
+    --times-fold-container: 4;
+    --rem-converter: 1rem;
   }
   @media (min-width: 769px) {
     :root {
       --type-scale: 1.333;
-		  --form-field: 56px;
+      --form-field: 56px;
+    }
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --times-fold-container: 0;
     }
   }
 </style>

@@ -67,7 +67,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .ctnr {
-  padding: 0 var(--gutter-container);
+  width: min(var(--container-width),100%);
+  padding: 0 calc(var(--gutter-x) * var(--times-fold-container));
   margin: 0 auto;
 }
 .rw {

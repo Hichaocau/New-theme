@@ -27,8 +27,8 @@
     {%- comment -%} {% render 'meta-tags' %} {%- endcomment -%}
     {% render 'style-variables' %}
     {{ content_for_header }}
+    {{ 'helper.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'style.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
 
     <script>
       window.shopUrl = `{{ request.origin }}`;

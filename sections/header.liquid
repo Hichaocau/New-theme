@@ -1,20 +1,63 @@
-<link rel="stylesheet" href="{{ 'helper.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'style.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'">
 
 <header class="header" data-ui-component="Header Section">
   <div class="ctnr">
-    hello
+    <div class="d-flex between-sm middle-sm p-relative">
+      <div class="header__logo">
+        {%- if request.page_type == 'index' -%}
+          <h1>
+        {%- endif -%}
+          <a href="{{ routes.root_url }}">
+            {%- if section.settings.logo != blank -%}
+              <img srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+              src="{{ section.settings.logo | image_url: width: section.settings.logo_width }}"
+              loading="lazy"
+              class="header__logo-image w-100"
+              width="{{ section.settings.logo.width }}"
+              height="{{ section.settings.logo.height }}"
+              alt="{{ section.settings.logo.alt | default: shop.name | escape }}" />
+          {%- else -%}
+            <span class="h2">{{ shop.name }}</span>
+          {%- endif -%}
+          </a>
+        {%- if request.page_type == 'index' -%}
+          </h1>
+        {%- endif -%}
+      </div>
+      <div class="header__nav">
+        <ul class="main-nav d-flex fw-wrap end-sm ls-none ">
+          {% for link in linklists[section.settings.main_linklist].links %}
+            {% liquid
+              assign child_list_handle = link.title | handleize
+            %}
+            <li class="nav__item d-block{% if link.active %} nav__item--active{% endif %}">
+            {% if linklists[child_list_handle].links != blank %}
+              <details class="p-relative">
+                <summary class="nav__link d-block">
+                  <span class="nav__link__title">
+                    {{- link.title -}}
+                  </span>
+                  {%- render 'icon-caret', width: '8px' -%}
+                </summary>
+                <ul class="nav__dropdown nav__dropdown--header p-absolute ls-none">
+                  {% for childlink in linklists[child_list_handle].links %}
+                    <li>
+                      <a href="{{ childlink.url }}"
+                        class="sub-nav__link d-block">{{- childlink.title | escape -}}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </details>
+            {% else %}
+                <a href="{{ link.url }}" class="nav__link d-block"><span class="nav__link__title">{{- link.title -}}</span></a>
+            {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </div>
 </header>
-
-
-
-
-
-
-
-
 
 {% schema %}
 {
@@ -28,7 +71,7 @@
     },
     {
       "type": "link_list",
-      "id": "menu",
+      "id": "main_linklist",
       "default": "main-menu",
       "label": "Menu"
     }
