@@ -1,9 +1,11 @@
-:root {
-    --color-page-background: {{ settings.page_bg }};
-	--color-primary-color: {{ settings.primary_color }};
-	--color-secondary-color: {{ settings.secondary_color }};
-	--color-normal-text: {{ settings.normal_text }};
-	--color-text-disabled: rgba(var(--color-normal-text), .25);
-	--color-text-inverse: #ffffff;
-	--color-background-mask: rgba(211, 243, 254, 0.1);
-}
+<style>
+	:root {
+		--color-page-background: {{ settings.page_bg }};
+		--color-primary: {{ settings.primary_color }};
+		--color-secondary: {{ settings.secondary_color }};
+		--color-normal-text: {{ settings.normal_text }};
+		--color-text-disabled: rgba(var(--color-normal-text), .25);
+		--color-text-inverse: #ffffff;
+		--color-background-mask: rgba(211, 243, 254, 0.1);
+	}
+</style>

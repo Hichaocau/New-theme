@@ -26,15 +26,9 @@
 
     {%- comment -%} {% render 'meta-tags' %} {%- endcomment -%}
     {% render 'style-variables' %}
-    <script src="{{ 'helper.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
-    {{ 'layout.css' | asset_url | stylesheet_tag: preload: true }}
-    {{ 'main.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
 
-    <noscript>
-      <link rel="stylesheet" href="{{ 'no-js.css' | asset_url }}" media="all">
-    </noscript>
-    {%- render 'color-swatch-data' -%}
     <script>
       window.shopUrl = `{{ request.origin }}`;
       window.routes = {
@@ -76,37 +70,18 @@
     </script>
   </head>
 
-  <body class="page-type-{{ request.page_type }} {% if settings.show_background_grid_lines %} body--grid-line {% endif %}">
-
-    <a class="skip-to-content-link button button--large button--primary visually-hidden" href="#mainContent">
-      {{ "accessibility.skip_to_text" | t }}
-    </a>
+  <body>
     {%- liquid
-      section 'announcement-bar'
       section 'header'
     -%}
     <main id="mainContent" class="content-for-layout" role="main" tabindex="-1">{{ content_for_layout }}</main>
     {%- liquid
-    	section 'popup'
-      render 'quickshop'
       section 'footer'
     -%}
-    {%- if request.design_mode -%}
-      <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
-    {%- endif -%}
      <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
-    <script src="{{ 'cart-notification-panel.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'carousel.js' | asset_url }}" defer="defer"></script>
-    <link rel="stylesheet" href="{{ 'drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="{{ 'animations.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="{{ 'drawer.css' | asset_url }}" media="all">
-      <link rel="stylesheet" href="{{ 'animations.css' | asset_url }}" media="all">
-    </noscript>
     <script data-asset="script">
       SHTLoad.push(function () {
         if (!document.querySelector(`#drawer-js-file`)) {
