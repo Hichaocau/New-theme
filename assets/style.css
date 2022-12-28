@@ -23,12 +23,8 @@ a {
   word-break: break-all;
   font-size: 16px;
   line-height: 24px;
-}
-.btn-large {
   min-height: var(--form-field);
-  font-size: var(--heading-5);
 }
-
 .btn:focus-visible:not(.btn-link) {
   box-shadow: 0px 0px 0px 4px rgba(39, 239, 183, 0.2);
   outline: 0;
@@ -64,8 +60,36 @@ a {
 .btn-link:active {
   color: var(--color-primary);
 }
+textarea,
+input,
+select {
+  font-size: var(--font-body-size);
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  background: var(--color-white);
+}
+textarea {
+  min-height: 160px;
+  max-width: 100%;
+}
+.field__text {
+  padding: 12px 20px;
+  height: 48px;
+  background: var(--color-white);
+  color: var(--color-normal-text);
+  border-radius: 4px;
+}
+.field__text::placeholder {
+  color: rgba(var(--color-normal-text), .25);
+}
 @media (min-width: 769px) {
   .btn:not(.btn-link) {
+    font-size: 18px;
+    line-height: 27px;
     padding: 0 32px;
+  }
+  .btn-link {
+    --form-field: 44px;
   }
 }

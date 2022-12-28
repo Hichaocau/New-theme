@@ -66,129 +66,26 @@
       "name": "t:settings_schema.typography.name",
       "settings": [
         {
-          "type": "header",
-          "content": "t:settings_schema.typography.settings.header__1.content"
+          "type": "range",
+          "id": "typography_font_scale_level",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "t:settings_schema.typography.settings.font_scale_level.label",
+          "info": "t:settings_schema.typography.settings.font_scale_level.info",
+          "default": 1
         },
         {
           "type": "font_picker",
           "id": "type_header_font",
-          "default": "assistant_n4",
-          "label": "t:settings_schema.typography.settings.type_header_font.label",
-          "info": "t:settings_schema.typography.settings.type_header_font.info"
-        },
-        {
-          "type": "range",
-          "id": "heading_scale",
-          "min": 100,
-          "max": 150,
-          "step": 5,
-          "unit": "%",
-          "label": "t:settings_schema.typography.settings.heading_scale.label",
-          "default": 100
-        },
-        {
-          "type": "header",
-          "content": "t:settings_schema.typography.settings.header__2.content"
+          "default": "helvetica_n4",
+          "label": "t:settings_schema.typography.settings.heading_font.label"
         },
         {
           "type": "font_picker",
           "id": "type_body_font",
           "default": "assistant_n4",
-          "label": "t:settings_schema.typography.settings.type_body_font.label",
-          "info": "t:settings_schema.typography.settings.type_body_font.info"
-        },
-        {
-          "type": "range",
-          "id": "body_scale",
-          "min": 100,
-          "max": 130,
-          "step": 5,
-          "unit": "%",
-          "label": "t:settings_schema.typography.settings.body_scale.label",
-          "default": 100
-        }
-      ]
-    },
-    {
-      "name": "t:settings_schema.buttons.name",
-      "settings": [
-        {
-          "type": "header",
-          "content": "t:settings_schema.global.settings.header__border.content"
-        },
-        {
-          "type": "range",
-          "id": "buttons_border_thickness",
-          "min": 0,
-          "max": 12,
-          "step": 1,
-          "unit": "px",
-          "label": "t:settings_schema.global.settings.thickness.label",
-          "default": 1
-        },
-        {
-          "type": "range",
-          "id": "buttons_border_opacity",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "%",
-          "label": "t:settings_schema.global.settings.opacity.label",
-          "default": 100
-        },
-        {
-          "type": "range",
-          "id": "buttons_radius",
-          "min": 0,
-          "max": 40,
-          "step": 2,
-          "unit": "px",
-          "label": "t:settings_schema.global.settings.corner_radius.label",
-          "default": 0
-        },
-        {
-          "type": "header",
-          "content": "t:settings_schema.global.settings.header__shadow.content"
-        },
-        {
-          "type": "range",
-          "id": "buttons_shadow_opacity",
-          "min": 0,
-          "max": 100,
-          "step": 5,
-          "unit": "%",
-          "label": "t:settings_schema.global.settings.opacity.label",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "buttons_shadow_horizontal_offset",
-          "min": -12,
-          "max": 12,
-          "step": 2,
-          "unit": "px",
-          "label": "t:settings_schema.global.settings.horizontal_offset.label",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "buttons_shadow_vertical_offset",
-          "min": -12,
-          "max": 12,
-          "step": 2,
-          "unit": "px",
-          "label": "t:settings_schema.global.settings.vertical_offset.label",
-          "default": 0
-        },
-        {
-          "type": "range",
-          "id": "buttons_shadow_blur",
-          "min": 0,
-          "max": 20,
-          "step": 5,
-          "unit": "px",
-          "label": "t:settings_schema.global.settings.blur.label",
-          "default": 0
+          "label": "t:settings_schema.typography.settings.body_font.label"
         }
       ]
     }

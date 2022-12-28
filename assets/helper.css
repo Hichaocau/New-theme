@@ -60,8 +60,8 @@ body {
   line-height: calc(var(--font-body-size) * 1.5);
   font-family: var(--font-body-family);
   font-weight: var(--font-body-weight);
-  color: var(--color-normal-text);
-  background: var(--color-page-bg);
+  color: var(--color-text-inverse);
+  background: var(--color-page-background);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;

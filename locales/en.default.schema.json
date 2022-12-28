@@ -42,30 +42,17 @@
     "typography": {
       "name": "Typography",
       "settings": {
-        "type_header_font": {
-          "label": "Font",
-          "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/manual/online-store/os/store-speed/improving-speed#fonts)"
+        "heading_font": {
+          "label": "Heading font"
         },
-        "heading_scale": {
-          "label": "Font size scale"
+        "body_font": {
+          "label": "Body font"
         },
-        "header__1": {
-          "content": "Headings"
-        },
-        "header__2": {
-          "content": "Body"
-        },
-        "type_body_font": {
-          "label": "Font",
-          "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/manual/online-store/os/store-speed/improving-speed#fonts)"
-        },
-        "body_scale": {
-          "label": "Font size scale"
+        "font_scale_level": {
+          "label": "Font scale level",
+          "info": "Changing the font type scale will change the overall font size. [Learn more](https://docs.saleshunterthemes.com/general-settings/typography)"
         }
       }
-    },
-    "buttons": {
-      "name": "Buttons"
     }
   }
 }
