@@ -40,31 +40,25 @@
           "type": "color",
           "id": "page_bg",
           "default": "#0F0051",
-          "label": "t:settings_schema.colors.settings.colors_solid_button_labels.label"
+          "label": "t:settings_schema.colors.settings.page_background.label"
         },
         {
           "type": "color",
           "id": "primary_color",
           "default": "#27EFB7",
-          "label": "t:settings_schema.colors.settings.colors_accent_1.label"
+          "label": "t:settings_schema.colors.settings.primary_color.label"
         },
         {
           "type": "color",
-          "id": "gradient_accent_1",
-          "default": "#16171A",
-          "label": "t:settings_schema.colors.settings.gradient_accent_1.label"
-        },
-        {
-          "type": "color",
-          "id": "colors_accent_2",
+          "id": "secondary_color",
           "default": "#334FB4",
-          "label": "t:settings_schema.colors.settings.colors_accent_2.label"
+          "label": "t:settings_schema.colors.settings.secondary_color.label"
         },
         {
           "type": "color",
-          "id": "gradient_accent_2",
-          "default": "#ffffff",
-          "label": "t:settings_schema.colors.settings.gradient_accent_2.label"
+          "id": "normal_text",
+          "default": "#16171A",
+          "label": "t:settings_schema.colors.settings.normal_text.label"
         }
       ]
     },
@@ -112,59 +106,6 @@
           "unit": "%",
           "label": "t:settings_schema.typography.settings.body_scale.label",
           "default": 100
-        }
-      ]
-    },
-    {
-      "name": "t:settings_schema.layout.name",
-      "settings": [
-        {
-          "type": "range",
-          "id": "page_width",
-          "min": 1000,
-          "max": 1600,
-          "step": 100,
-          "default": 1200,
-          "unit": "px",
-          "label": "t:settings_schema.layout.settings.page_width.label"
-        },
-        {
-          "type": "range",
-          "id": "spacing_sections",
-          "min": 0,
-          "max": 100,
-          "step": 4,
-          "unit": "px",
-          "label": "t:settings_schema.layout.settings.spacing_sections.label",
-          "default": 0
-        },
-        {
-          "type": "header",
-          "content": "t:settings_schema.layout.settings.header__grid.content"
-        },
-        {
-          "type": "paragraph",
-          "content": "t:settings_schema.layout.settings.paragraph__grid.content"
-        },
-        {
-          "type": "range",
-          "id": "spacing_grid_horizontal",
-          "min": 4,
-          "max": 40,
-          "step": 4,
-          "default": 8,
-          "unit": "px",
-          "label": "t:settings_schema.layout.settings.spacing_grid_horizontal.label"
-        },
-        {
-          "type": "range",
-          "id": "spacing_grid_vertical",
-          "min": 4,
-          "max": 40,
-          "step": 4,
-          "default": 8,
-          "unit": "px",
-          "label": "t:settings_schema.layout.settings.spacing_grid_vertical.label"
         }
       ]
     },
@@ -252,4 +193,3 @@
       ]
     }
   ]
-  

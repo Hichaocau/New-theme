@@ -24,7 +24,7 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {% render 'meta-tags' %}
+    {%- comment -%} {% render 'meta-tags' %} {%- endcomment -%}
     {% render 'style-variables' %}
     <script src="{{ 'helper.js' | asset_url }}" defer="defer"></script>
     {{ content_for_header }}
