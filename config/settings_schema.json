@@ -51,7 +51,6 @@
         {
           "type": "color",
           "id": "secondary_color",
-          "default": "#334FB4",
           "label": "t:settings_schema.colors.settings.secondary_color.label"
         },
         {
