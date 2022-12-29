@@ -1,58 +1,67 @@
 <link rel="stylesheet" href="{{ 'header.css' | asset_url }}" media="print" onload="this.media='all'">
 
-<header class="header ctnr d-flex between-xs middle-xs p-relative" data-ui-component="Header Section">
-  <div class="header__logo w-100 w-lg-auto d-flex between-xs middle-xs">
-    <div class="header-logo">
-      {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading m-zero wb-break-word visually-hidden">{{ section.settings.logo.alt | default: shop.name | escape }}</h1>
-      {%- endif -%}
-      <a href="{{ routes.root_url }}" aria-label="{{ section.settings.logo.alt | default: shop.name | escape }}" class="header__logo-link m-zero d-block h4 wb-break-word">
-        {%- if section.settings.logo != blank -%}
-          {%- assign image_size_2x = section.settings.logo_width | times: 2 | at_most: 5760 -%}
-            <img srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }}, {{ section.settings.logo | image_url: width: image_size_2x }} 2x" src="{{ section.settings.logo | image_url: width: 400 }}" loading="lazy" class="header__logo-img logo__main-logo logo" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
-        {%- else -%}
-          <span class="header__heading m-zero wb-break-word">{{ shop.name }}</span>
+<div class="section-header p-relative">
+  <header class="header ctnr d-flex between-xs middle-xs p-relative" data-ui-component="Header Section">
+    <div class="header__logo w-100 w-lg-auto d-flex between-xs middle-xs">
+      <div class="header-logo">
+        {%- if request.page_type == 'index' -%}
+          <h1 class="header__heading m-zero wb-break-word visually-hidden">{{ section.settings.logo.alt | default: shop.name | escape }}</h1>
         {%- endif -%}
-      </a>
+        <a href="{{ routes.root_url }}" aria-label="{{ section.settings.logo.alt | default: shop.name | escape }}" class="header__logo-link m-zero d-block h4 wb-break-word">
+          {%- if section.settings.logo != blank -%}
+            {%- assign image_size_2x = section.settings.logo_width | times: 2 | at_most: 5760 -%}
+              <img srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }}, {{ section.settings.logo | image_url: width: image_size_2x }} 2x" src="{{ section.settings.logo | image_url: width: 400 }}" loading="lazy" class="header__logo-img logo__main-logo logo" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+          {%- else -%}
+            <span class="header__heading m-zero wb-break-word">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+      <div class="header__icon d-flex d-none-lg">
+        <button type="button" class="btn bg-transparent js-menu-drawer-trigger">
+          {%- render 'icon-hamburger' -%}
+        </button>
+      </div>
     </div>
-    <div class="header__icon d-flex d-none-lg">
-      <button type="button" class="btn bg-transparent js-menu-drawer-trigger">
-        {%- render 'icon-hamburger' -%}
-      </button>
+    <div class="header__nav translate100">
+      <div class="drawer__header d-flex middle-xs between-xs d-none-lg">
+        <h2 class="drawer__heading h4 m-zero">Menu</h2>
+        <button class="drawer__btn-close btn bg-transparent">
+          {%- render 'icon-close' -%}
+        </button>
+      </div>
+      <ul class="main-nav fw-wrap w-100 end-sm ls-none">
+        {% for link in linklists[section.settings.main_linklist].links %}
+          {% liquid
+            assign child_list_handle = link.title | handleize
+          %}
+          <li class="nav__item d-block{% if link.active %} nav__item--active{% endif %}">
+          {% if linklists[child_list_handle].links != blank %}
+            <details class="p-relative">
+              <summary class="nav__link d-block">
+                <span class="nav__link__title">
+                  {{- link.title -}}
+                </span>
+                {%- render 'icon-caret', width: '8px' -%}
+              </summary>
+              <ul class="nav__dropdown nav__dropdown--header p-absolute ls-none">
+                {% for childlink in linklists[child_list_handle].links %}
+                  <li>
+                    <a href="{{ childlink.url }}"
+                      class="sub-nav__link d-block">{{- childlink.title | escape -}}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </details>
+          {% else %}
+              <a href="{{ link.url }}" class="nav__link d-block"><span class="nav__link__title">{{- link.title -}}</span></a>
+          {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </div>
-  </div>
-  <div class="header__nav d-none">
-    <ul class="main-nav d-flex fw-wrap end-sm ls-none ">
-      {% for link in linklists[section.settings.main_linklist].links %}
-        {% liquid
-          assign child_list_handle = link.title | handleize
-        %}
-        <li class="nav__item d-block{% if link.active %} nav__item--active{% endif %}">
-        {% if linklists[child_list_handle].links != blank %}
-          <details class="p-relative">
-            <summary class="nav__link d-block">
-              <span class="nav__link__title">
-                {{- link.title -}}
-              </span>
-              {%- render 'icon-caret', width: '8px' -%}
-            </summary>
-            <ul class="nav__dropdown nav__dropdown--header p-absolute ls-none">
-              {% for childlink in linklists[child_list_handle].links %}
-                <li>
-                  <a href="{{ childlink.url }}"
-                    class="sub-nav__link d-block">{{- childlink.title | escape -}}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          </details>
-        {% else %}
-            <a href="{{ link.url }}" class="nav__link d-block"><span class="nav__link__title">{{- link.title -}}</span></a>
-        {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</header>
+  </header>
+  <div class="drawer__overlay d-none"></div>
+</div>
 
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
 
