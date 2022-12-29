@@ -1,4 +1,28 @@
+{%- liquid
+	assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
+	assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
+	assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
+	assign heading_font_bold = settings.type_header_font | font_modify: 'weight', 'bold'
+-%}
+{%- if settings.type_body_font != blank -%}
+	<link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>
+{%- endif -%}
+{%- if body_font_bold != blank -%}
+	<link rel="preload" as="font" href="{{ body_font_bold | font_url }}" type="font/woff2" crossorigin>
+{%- endif -%}
+{%- if settings.type_header_font != blank -%}
+	<link rel="preload" as="font" href="{{ settings.type_header_font | font_url }}" type="font/woff2" crossorigin>
+{%- endif -%}
+ {%- if heading_font_bold != blank -%}
+	<link rel="preload" as="font" href="{{ heading_font_bold | font_url }}" type="font/woff2" crossorigin>
+{%- endif -%}
 <style>
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ body_font_bold | font_face: font_display: 'swap' }}
+  {{ body_font_italic | font_face: font_display: 'swap' }}
+  {{ body_font_bold_italic | font_face: font_display: 'swap' }}
+  {{ heading_font_bold | font_face: font_display: 'swap' }}
   :root {
     --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
 	  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
@@ -17,7 +41,7 @@
     --heading-1: calc(var(--heading-2) * var(--type-scale));
     --heading-2: calc(var(--heading-3) * var(--type-scale));
     --heading-3: calc(var(--heading-4) * var(--type-scale));
-    --heading-4: calc(var(--heading-5) * var(--type-scale));
+    --heading-4: calc(var(--font-body-size) * var(--type-scale));
     --heading-5: var(--font-body-size);
     --form-field: 44px;
 

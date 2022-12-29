@@ -10,3 +10,9 @@
 .footer__nav__link {
   color: rgba(255, 255, 255, 0.85);
 }
+.footer__nav__link:hover {
+  color: var(--color-white);
+}
+.footer__nav__link:active {
+  color: var(--color-primary);
+}

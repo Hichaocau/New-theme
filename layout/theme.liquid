@@ -24,51 +24,10 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {%- comment -%} {% render 'meta-tags' %} {%- endcomment -%}
     {% render 'style-variables' %}
     {{ content_for_header }}
     {{ 'helper.css' | asset_url | stylesheet_tag: preload: true }}
     {{ 'style.css' | asset_url | stylesheet_tag: preload: true }}
-
-    <script>
-      window.shopUrl = `{{ request.origin }}`;
-      window.routes = {
-        root_url: "{{ routes.root_url }}",
-        cart_add_url: `{{ routes.cart_add_url }}`,
-        cart_change_url: `{{ routes.cart_change_url }}`,
-        cart_update_url: `{{ routes.cart_update_url }}`,
-        predictive_search_url: `{{ routes.predictive_search_url }}`
-      };
-
-      var SHThemeLanguage = window.SHThemeLanguage || {};
-      SHThemeLanguage.cart = {
-        ERROR: `{{ 'sections.cart.cart_error' | t }}`,
-        QUANTITY_ERROR: `{{ 'sections.cart.cart_quantity_error' | t: quantity: '[quantity]' }}`
-      };
-
-      SHThemeLanguage.product = {
-        PRODUCT_ADD_TO_CART: `{{ 'products.product.add_to_cart' | t }}`,
-        PRODUCT_SOLD_OUT: `{{ 'products.product.sold_out' | t }}`,
-        PRODUCT_UNAVAILABLE: `{{ 'products.product.unavailable' | t }}`,
-        PRODUCT_QUANTITY_MAXIMUM_LIMIT_REACHED: `Maximum available quantity reached!`,
-        MODAL_BUTTON_CLOSE: `Close`,
-      };
-
-      var docElement = document.documentElement;
-      docElement.className = docElement.className.replace("no-js", "js");
-      Shopify.designMode && docElement.classList.add('shopify-design-mode');
-
-      var SHTDefer = [];
-      var SHTLoad = [];
-
-      document.addEventListener("DOMContentLoaded", function () {
-        while (SHTDefer.length) SHTDefer.shift().call();
-      });
-
-      window.addEventListener("load", function () {
-        while (SHTLoad.length) SHTLoad.shift().call();
-      });
-    </script>
   </head>
 
   <body>
@@ -83,36 +42,5 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
-    <script data-asset="script">
-      SHTLoad.push(function () {
-        if (!document.querySelector(`#drawer-js-file`)) {
-          let drawer = document.createElement("script");
-          drawer.setAttribute('src', `{{ 'drawer.js' | asset_url }}`);
-          drawer.setAttribute('id', 'drawer-js-file');
-          document.body.appendChild(drawer);
-        }
-        if (!document.querySelector(`#predictive-search-js-file`)) {
-          let predictive_search = document.createElement("script");
-          predictive_search.setAttribute('src', `{{ 'predictive-search.js' | asset_url }}`);
-          predictive_search.setAttribute('id', 'predictive-search-js-file');
-          document.body.appendChild(predictive_search);
-        }
-        if (!document.querySelector(`#color-swatch-js-file`)) {
-          let color_swatch = document.createElement("script");
-          color_swatch.setAttribute('src', `{{ 'color-swatch.js' | asset_url }}`);
-          color_swatch.setAttribute('id', 'color-swatch-js-file');
-          document.body.appendChild(color_swatch);
-        }
-
-        SHTLoad.push(function () {
-          if (!document.querySelector(`#dialog-js-file`)) {
-            let dialog = document.createElement("script");
-            dialog.setAttribute('src', `{{ 'dialog.js' | asset_url }}`);
-            dialog.setAttribute('id', 'dialog-js-file');
-            document.body.appendChild(dialog);
-          }
-        });
-      });
-    </script>
   </body>
 </html>
