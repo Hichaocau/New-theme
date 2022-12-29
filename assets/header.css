@@ -22,7 +22,7 @@
 .nav__link__title:hover {
   color: var(--color-white);
 }
-.header__nav{
+.header__nav {
   background-color: var(--color-page-background);
   position: fixed;
   top: 0;
@@ -57,7 +57,13 @@
   background-color: rgba(0,0,0,.65);
   transition: ease .3s;
   overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
   max-width: 100%;
+}
+.drawer__overlay.active {
+  opacity: 1;
+  visibility: visible;
 }
 .translate0 {
   transform: translateX(0);
