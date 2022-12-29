@@ -3,9 +3,6 @@
   padding-top: 14px;
   padding-bottom: 14px;
 }
-.header__nav {
-  flex: 1 1 auto;
-}
 .header__icon button {
   padding: 0 !important;
   min-height: auto;
@@ -15,22 +12,32 @@
   font-size: var(--font-body-size);
   line-height: 24px;
 }
+.nav__item--active .nav__link__title,
+.nav__item--active .nav__link__title:hover {
+  color: var(--color-primary);
+}
 .nav__link__title {
-  color: rgba(var(--color-white), .85);
+  color: rgba(255, 255, 255, .85);
 }
 .nav__link__title:hover {
   color: var(--color-white);
 }
-.nav__item--active {
-  color: var(--color-primary);
+/* .header__nav{
+  position: fixed;
+  top: 0;
+  right: 0;
+  max-width: 375px;
+  width: 100%;
 }
-
+.main-nav {
+  display: inline-block;
+} */
 @media (min-width: 1025px) {
   .header {
     padding-top: 0;
     padding-bottom: 0;
   }
-  .header__menu {
+  .header__nav {
     display: flex;
   }
 }

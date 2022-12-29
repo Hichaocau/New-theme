@@ -1145,6 +1145,9 @@ a[href^="/"].hide-no-link ~ span,
   [style*="--h-lg"] {
     height: var(--h-lg);
   }
+  .w-lg-auto {
+    width: auto;
+  }
   .d-block-lg {
     display: block;
   }
