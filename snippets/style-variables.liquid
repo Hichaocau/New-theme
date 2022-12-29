@@ -1,6 +1,7 @@
 <style>
   :root {
     --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+	  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
     --font-heading-weight: {{ settings.type_header_font.weight }};
     --font-body-size: {{ settings.typography_font_scale_level | times: '0.1' | plus: '1.5' | append: 'rem' }};
     --font-heading-style: {{ settings.type_header_font.style }};
@@ -17,15 +18,12 @@
     --heading-2: calc(var(--heading-3) * var(--type-scale));
     --heading-3: calc(var(--heading-4) * var(--type-scale));
     --heading-4: calc(var(--heading-5) * var(--type-scale));
-    --heading-5: calc(var(--font-body-size) * var(--type-scale));
+    --heading-5: var(--font-body-size);
     --form-field: 44px;
 
     /* Layout */
     --container-width: 1200px;
-    --gutter: 16;
-    --gutter-x: calc(8 / var(--gutter) * var(--rem-converter));
-    --times-fold-container: 4;
-    --rem-converter: 1rem;
+    --gutter: 16px;
   }
   @media (min-width: 769px) {
     :root {
