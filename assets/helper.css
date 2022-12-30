@@ -92,14 +92,12 @@ body {
 .h3,
 .h4,
 .h5,
-.h6,
 h1,
 h2,
 h3,
 h4,
-h5,
-h6 {
-  font-family: var(--font-body-family);
+h5 {
+  font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   line-height: 1.25;
@@ -127,10 +125,6 @@ h4 {
 .h5,
 h5 {
   font-size: var(--heading-5);
-}
-.h6,
-h6 {
-  font-size: var(--heading-6);
 }
 /*------------------------------------*\
 * SPACING
