@@ -16,6 +16,15 @@
  {%- if heading_font_bold != blank -%}
 	<link rel="preload" as="font" href="{{ heading_font_bold | font_url }}" type="font/woff2" crossorigin>
 {%- endif -%}
+
+{% style %}
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url({{ "SpaceGrotesk-VariableFont_wght.woff2" || asset_url }}) format("woff2");
+  }
+{% endstyle %}
+
+
 <style>
   {{ settings.type_body_font | font_face: font_display: 'swap' }}
   {{ settings.type_header_font | font_face: font_display: 'swap' }}
@@ -26,6 +35,8 @@
   :root {
     --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
 	  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    --font-heading-family: 'Space Grotesk', sans-serif;
+    --font-body-family: 'Space Grotesk', sans-serif;
     --font-heading-weight: {{ settings.type_header_font.weight }};
     --font-body-size: {{ settings.typography_font_scale_level | times: '0.1' | plus: '1.5' | append: 'rem' }};
     --font-heading-style: {{ settings.type_header_font.style }};
