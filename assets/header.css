@@ -64,12 +64,6 @@
   opacity: 1;
   visibility: visible;
 }
-.translate0 {
-  transform: translateX(0);
-}
-.translate100 {
-  transform: translateX(100%);
-}
 
 @media (min-width: 1025px) {
   .header {
