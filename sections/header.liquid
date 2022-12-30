@@ -9,8 +9,16 @@
         {%- endif -%}
         <a href="{{ routes.root_url }}" aria-label="{{ section.settings.logo.alt | default: shop.name | escape }}" class="header__logo-link m-zero d-block h4 wb-break-word">
           {%- if section.settings.logo != blank -%}
-            {%- assign image_size_2x = section.settings.logo_width | times: 2 | at_most: 5760 -%}
-              <img srcset="{{ section.settings.logo | image_url: width: section.settings.logo_width }}, {{ section.settings.logo | image_url: width: image_size_2x }} 2x" src="{{ section.settings.logo | image_url: width: 400 }}" loading="lazy" class="header__logo-img logo__main-logo logo" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}" alt="{{ section.settings.logo.alt | default: shop.name | escape }}">
+            {%- assign image_size_2x = section.settings.logo.width | times: 2 -%}
+            <img
+              srcset="{{ section.settings.logo | image_url: width: section.settings.logo.width }} 1x, {{ section.settings.logo | image_url: width: image_size_2x }} 2x"
+              src="{{ section.settings.logo | image_url: width: section.settings.logo.width }}"
+              loading="lazy"
+              class="logo"
+              width="{{ section.settings.logo.width }}"
+              height="{{ section.settings.logo.height }}"
+              alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+            >
           {%- else -%}
             <span class="header__heading m-zero wb-break-word">{{ shop.name }}</span>
           {%- endif -%}
