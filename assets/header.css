@@ -35,6 +35,10 @@
   max-width: 375px;
   width: 100%;
   z-index: 2;
+  transform: translateX(100%);
+}
+.header__nav.active {
+  transform: translateX(0);
 }
 .main-nav {
   display: inline-block;
@@ -68,7 +72,6 @@
   opacity: 1;
   visibility: visible;
 }
-
 
 @media (min-width: 1025px) {
   .header {

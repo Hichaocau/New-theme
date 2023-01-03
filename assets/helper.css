@@ -390,12 +390,6 @@ a[href^="/"].hide-no-link ~ span,
   left: 50%;
   transform: translateX(-50%);
 }
-.translate0 {
-  transform: translateX(0);
-}
-.translate100 {
-  transform: translateX(100%);
-}
 /*------------------------------------*\
   #BORDER
 \*------------------------------------*/
