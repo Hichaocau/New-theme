@@ -31,12 +31,6 @@
       </div>
     </div>
     <div class="header__nav">
-      <div class="drawer__header d-flex middle-xs between-xs d-none-lg">
-        <h2 class="drawer__heading h4 m-zero fw-700">Menu</h2>
-        <button class="drawer__btn-close btn bg-transparent">
-          {%- render 'icon-close' -%}
-        </button>
-      </div>
       <ul class="main-nav fw-wrap w-100 end-sm ls-none">
         {% for link in linklists[section.settings.main_linklist].links %}
           {% liquid
@@ -50,6 +44,15 @@
     </div>
   </header>
   <div class="drawer__overlay"></div>
+  <div class="drawer__wapper d-none-lg">
+    <div class="drawer__header d-flex middle-xs between-xs">
+      <h2 class="drawer__heading h4 m-zero fw-700">Menu</h2>
+      <button class="drawer__btn-close btn bg-transparent">
+        {%- render 'icon-close' -%}
+      </button>
+    </div>
+    <div class="drawer__body"></div>
+  </div>
 </div>
 
 <script src="{{ 'header.js' | asset_url }}" defer="defer"></script>
