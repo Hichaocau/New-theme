@@ -82,7 +82,8 @@
     max-width: inherit;
     transform: translateX(0);
   }
-  .header-logo {
+  .header-logo,
+  .header__logo {
     max-width: 240px;
   }
   .main-nav {
@@ -94,5 +95,11 @@
   }
   .drawer__overlay {
     display: none;
+  }
+  .nav__item {
+    font-weight: 400;
+  }
+  .nav__item--active {
+    font-weight: 700;
   }
 }
