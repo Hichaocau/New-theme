@@ -18,10 +18,23 @@
 {%- endif -%}
 
 {% style %}
-  @font-face {
-    font-family: "Space Grotesk";
-    src: url({{ "SpaceGrotesk-VariableFont_wght.woff2" || asset_url }}) format("woff2");
-  }
+ @font-face {
+    font-family: 'Space Grotesk';
+    src: url('SpaceGrotesk-Bold.woff2') format('woff2'),
+        url('SpaceGrotesk-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('SpaceGrotesk-Regular.woff2') format('woff2'),
+        url('SpaceGrotesk-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 {% endstyle %}
 
 
