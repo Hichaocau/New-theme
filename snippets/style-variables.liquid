@@ -18,25 +18,24 @@
 {%- endif -%}
 
 {% style %}
- @font-face {
+  @font-face {
     font-family: 'Space Grotesk';
-    src: url('SpaceGrotesk-Bold.woff2') format('woff2'),
-        url('SpaceGrotesk-Bold.woff') format('woff');
+    src: url({{ 'SpaceGrotesk-Bold.woff2'| asset_url }}) format('woff2'),
+        url({{ 'SpaceGrotesk-Bold.woff'| asset_url }}) format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
-}
+  }
 
-@font-face {
-    font-family: 'Space Grotesk';
-    src: url('SpaceGrotesk-Regular.woff2') format('woff2'),
-        url('SpaceGrotesk-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+  @font-face {
+      font-family: 'Space Grotesk';
+      src: url({{ 'SpaceGrotesk-Regular.woff2'| asset_url }}) format('woff2'),
+          url({{ 'SpaceGrotesk-Regular.woff'| asset_url }}) format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+  }
 {% endstyle %}
-
 
 <style>
   {{ settings.type_body_font | font_face: font_display: 'swap' }}
@@ -50,7 +49,8 @@
 	  --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
     --font-heading-family: 'Space Grotesk', sans-serif;
     --font-body-family: 'Space Grotesk', sans-serif;
-    --font-heading-weight: {{ settings.type_header_font.weight }};
+    --font-body-weight: 400;
+    --font-heading-weight: 700;
     --font-body-size: {{ settings.typography_font_scale_level | times: '0.1' | plus: '1.5' | append: 'rem' }};
     --font-heading-style: {{ settings.type_header_font.style }};
     --color-page-background: {{ settings.page_bg }};
@@ -70,7 +70,7 @@
     --form-field: 44px;
 
     /* Layout */
-    --container-width: 1200px;
+    --container-width: 1230px;
     --gutter: 16px;
   }
   @media (min-width: 769px) {
