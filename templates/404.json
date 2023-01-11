@@ -4,9 +4,15 @@
       "type": "main-404",
       "settings": {
       }
+    },
+    "section-text": {
+      "type": "section-text",
+      "settings": {
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "section-text"
   ]
 }
