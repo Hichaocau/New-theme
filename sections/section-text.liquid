@@ -1,0 +1,32 @@
+<div class="section-text section" data-ui-component="Section Text">
+  <div class="ctnr-fld">
+    <div class="section-text__wrapper w-100 ta-center">
+    <h2 class="mb-24">Grow your business with our new released theme - Blum</h2>
+    <p class="section-text__des fz-body-large">Mobile-first design. Unrivaled page speed. Made for fashion stores. And made for you</p>
+    <a href="{{- section.settings.button_link -}}" class="btn btn-primary">{{- section.settings.button_label -}}</a>
+  </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Section text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Try Blum FREE"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "First link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "text"
+    }
+  ]
+}
+{% endschema %}

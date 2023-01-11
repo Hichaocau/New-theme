@@ -1,1 +1,51 @@
-<h1 class="ta-center">main-404</h1>
+<div class="section-404" data-ui-component="404 Section">
+  <div class="ctnr">
+    <div class="section-404__wrapper ta-center w-100 fz-body-large">
+      <h1 class="mb-48 mb-md-64">Page not found!</h1>
+      <p class="section-404__desc mb-36 w-100">We can't seem to find the page you are looking for. It's either moved or does not exist anymore.</p>
+      <div class="section-404__need-help mb-24 mb-md-16 d-flex fd-column gap-8 center-md fd-row-md">
+        <span>Need some help?</span>
+        <a href="{{- section.settings.contact_our_support_link -}}" class="td-underline color-primary c-pointer">{{- section.settings.contact_our_support -}}</a>
+      </div>
+      <div class="section-404__need-info mb-48 mb-md-64 d-flex fd-column gap-8 center-md fd-row-md">
+        <span>Need more information about Blum?</span>
+        <a href="{{- section.settings.visit_our_documentation_link -}}" class="td-underline color-primary c-pointer">{{- section.settings.visit_our_documentation -}}</a>
+      </div>
+      <a href="{{- routes.root_url -}}" class="btn btn-secondary">Back to homepage</a>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "404 not found page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "contact_our_support",
+      "label": "First link label",
+      "default": "Contact our support"
+    },
+    {
+      "type": "url",
+      "id": "contact_our_support_link",
+      "label": "First link"
+    },
+    {
+      "type": "text",
+      "id": "visit_our_documentation",
+      "label": "Secondary link label",
+      "default": "Visit our Documentation"
+    },
+    {
+      "type": "url",
+      "id": "visit_our_documentation_link",
+      "label": "Secondary link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "text"
+    }
+  ]
+}
+{% endschema %}
