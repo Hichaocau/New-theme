@@ -140,11 +140,6 @@ textarea {
 }
 
 /* Section header */
-.header {
-  color: #fff;
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
 .header__icon button {
   padding: 0 !important;
   min-height: auto;
@@ -218,17 +213,20 @@ textarea {
 .drawer__wapper.active {
   transform: translateX(0)
 }
-#shopify-section-header{
+.header {
   position: fixed ;
   top: 0;
   right: 0;
   left: 0;
   transition: transform .4s ease-out;
+  color: #fff;
+  padding-top: 14px;
+  padding-bottom: 14px;
 }
-.scroll-down #shopify-section-header {
+.scroll-down .header {
   transform: translateY( -100%);
 }
-.scroll-up #shopify-section-header {
+.scroll-up .header {
   transform: none;
   opacity: 0.85;
   backdrop-filter: blur(10px);
