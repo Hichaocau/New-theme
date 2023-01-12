@@ -213,15 +213,19 @@ textarea {
 .drawer__wapper.active {
   transform: translateX(0)
 }
-.header {
-  position: fixed ;
+#shopify-section-header {
+  position: sticky ;
   top: 0;
   right: 0;
   left: 0;
-  transition: transform .4s ease-out;
+  z-index: 2;
+  overflow: hidden;
+}
+.header {
   color: #fff;
   padding-top: 14px;
   padding-bottom: 14px;
+  transition: transform .4s ease-out;
 }
 .scroll-down .header {
   transform: translateY( -100%);

@@ -31,7 +31,7 @@ MenuDrawer()
 
 function headerScroll() {
   let lastScroll = 0;
-  window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     if (currentScroll <= 0) {
       body.classList.remove('scroll-up');
@@ -40,13 +40,13 @@ function headerScroll() {
     if (currentScroll > lastScroll && !body.classList.contains("scroll-down")) {
       // down
       body.classList.remove('scroll-up');
-      body.classList.add("scroll-down");
+      body.classList.add('scroll-down');
     } else if (
       currentScroll < lastScroll &&
-      body.classList.contains("scroll-down")
+      body.classList.contains('scroll-down')
     ) {
       // up
-      body.classList.remove("scroll-down");
+      body.classList.remove('scroll-down');
       body.classList.add('scroll-up');
     }
     lastScroll = currentScroll;
