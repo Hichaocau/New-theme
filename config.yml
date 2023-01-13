@@ -1,6 +1,0 @@
-development:
-  password: shptka_d7fc89d033818c8ebc9f2bd9cbcb0bfb
-  theme_id: "124660383827"
-  store: tieumanthaustore.myshopify.com
-  ignore_files:
-    - config.yml
