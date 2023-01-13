@@ -235,7 +235,7 @@ textarea {
 .scroll-up .header-wrapper {
   transform: none;
   backdrop-filter: blur(10px);
-  background: rgba(15, 0, 81, .85);
+  background: rgba(15, 0, 81, .80);
 }
 
 @media (min-width: 1025px) {
