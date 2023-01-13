@@ -225,15 +225,17 @@ textarea {
   color: #fff;
   padding-top: 14px;
   padding-bottom: 14px;
+}
+.header-wrapper {
   transition: transform .4s ease-out;
 }
-.scroll-down .header {
+.scroll-down .header-wrapper {
   transform: translateY( -100%);
 }
-.scroll-up .header {
+.scroll-up .header-wrapper {
   transform: none;
-  opacity: 0.85;
   backdrop-filter: blur(10px);
+  background: rgba(15, 0, 81, .85);
 }
 
 @media (min-width: 1025px) {
