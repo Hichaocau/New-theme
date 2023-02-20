@@ -1,0 +1,252 @@
+{{ 'main-product.css' | asset_url | stylesheet_tag }}
+{{ 'cart-drawer.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign variant_label = 'color,colour,couleur,colore,boja,farbe,색,色,warna,dath,боја,lliw,liw,колір,värvi,värv,գույն,krāsa,màu sắc,màu,cor,cцвят,färg,farve,ngjyrë,kleur,väri,farge,renk,culoare,szín,цвет,kolor,barva,χρώμα,litur,spalva,farba' | split: ','
+-%}
+
+<div class="main-product d-grid gap-36">
+  <div class="product__media-wrapper d-grid gap-24">
+    {%- comment -%} {%- for media in product.media -%}
+      <div class="product__media">
+        {{ media.preview_image | image_url: width: 1946 | image_tag: loading: lazy, sizes: sizes}}
+      </div>
+    {%- endfor -%} {%- endcomment -%}
+    {%- for image in product.images -%}
+      <div class="product__media c-zoom-in">
+        <img src="{{ image| image_url: width: master }}"/>
+      </div>
+    {%- endfor -%}
+  </div>
+  <div class="product__info-wrapper">
+    <div class="">{% render 'breadcrumb' %}</div>
+    <h1 class="h2 pt-24 pb-16">{{ product.title | escape }}</h1>
+    <div class="product__info product__prices pb-16 js-product-prices">
+      <div class="d-flex top-xs fw-wrap c-gap-12">
+        {%- comment -%} {% render 'product-price', product: product, target: product.selected_or_first_available_variant, price_style: 'h4 pr-12' %} {%- endcomment -%}
+        <p class="product-price mt-4 mb-4 d-inline-block h4 pr-12">
+          {{ product.selected_or_first_available_variant.price | money }}
+        </p>
+        <s class="product-price-last">
+          {{ product.selected_or_first_available_variant.compare_at_price | money }}
+        </s>
+      </div>
+      {%- form 'product', product -%}
+        <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {{ form | payment_terms }}
+      {%- endform -%}
+    </div>
+    <div class="product__info product__description pb-16">
+      {{ product.description }}
+    </div>
+    <div class="product__info product__status pb-16 fw-700">
+      {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+        <span>• Item is in stock</span>
+      {%- else -%}
+        <span>• Item is out stock</span>
+      {%- endif -%}
+    </div>
+    <div class="product__info product__variants pb-16">
+      {%- unless product.has_only_default_variant -%}
+        <sht-variant-radios class="product__variants--radios d-flex fd-column gap-24 no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}">
+          {%- for option in product.options_with_values -%}
+            {% assign index = forloop.index | minus: 1 %}
+            <fieldset class="form__fields product-option js-variant-radio-container d-flex fw-wrap p-zero m-zero b-zero">
+              <legend class="p-zero m-zero product-option__name">
+                <span class="h6 pb-12 d-block fw-700">{{ option.name }}</span>
+              </legend>
+              {%- assign variant_name = option.name | downcase -%}
+              {%- if variant_label contains variant_name -%}
+              <div class="variant-swatch d-flex fw-wrap gap-12 hide-empty">
+                {%- for value in option.values -%}
+                  <div class="product-swatches__item js-variant-option-value product-option__value" data-value="{{ value | escape }}">
+                    <input type="radio" class="input--variant form__control js-variant-item {{ input_class | default: 'js-variant-radio-item' }} visually-hidden"
+                      id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                      name="{{ option.name }}"
+                      value="{{ value | escape }}"
+                      data-variant-value="{{ value | escape }}"
+                      form="{{ product_form_id }}"
+                      {% if option.selected_value == value %}checked{% endif %}>
+                    <label class="form__label c-pointer" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" tabindex="-1">
+                      <span class="product-swatches js-variant-swatch-item d-block br-50p subtext" aria-hidden="true" data-option-value="{{ value | downcase | escape | remove: " " }}"></span>
+                      <span class="visually-hidden js-variant-option-label">{{ value }}</span>
+                    </label>
+                  </div>
+                {%- endfor -%}
+              </div>
+              {%- else -%}
+                <ul class="variant-list ls-none d-flex fw-wrap gap-12">
+                  {%- for value in option.values -%}
+                    <li class="form__field js-variant-option-value js-variant-option-value-item product-option__value">
+                      <input
+                        type="radio"
+                        class="form__control input--variant js-variant-radio-item js-variant-item visually-hidden"
+                        id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                        name="{{ option.name }}"
+                        value="{{ value | escape }}"
+                        data-variant-value="{{ value | escape }}"
+                        form="{{ product_form_id }}"
+                        {% if option.selected_value == value %}
+                          checked
+                        {% endif %}
+                      >
+                      <label class="form__label product-option__label d-block js-variant-option-label ta-center" for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"><span>{{ value }}</span></label>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </fieldset>
+          {%- endfor -%}
+        </sht-variant-radios>
+      {%- endunless -%}
+    </div>
+    <div class="product__form pt-16 pb-16">
+      {%- form 'product', product, id: product_form_id, class: 'product_form_id form form__fields', data-type: 'add-to-cart-form' -%}
+        <div class="form__field">
+          <input type="hidden" class="form__control" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+        </div>
+        <div class="product-form__buttons">
+          <div class="product-quantity d-grid gap-12" style="--gtc-equal: 2">
+            <lable for="quantity" hidden>Quantity</lable>
+            <div class="quantity-selector d-flex">
+              <button type="button" class="quantity-selector-minus c-pointer">
+                {%- render 'icon-minus', size: 20 -%}
+              </button>
+              <input id="quantity" class="quantity-input" name="quantity" value="1"/>
+              <button type="button" class="quantity-selector-plus c-pointer">
+                {%- render 'icon-plus', size: 20 -%}
+              </button>
+            </div>
+            <div class="product-form-add-to-cart gap-16 d-flex w-100">
+              <button type="submit" name="add" class="js-product-form-submit-btn product-btn-atc btn btn-large w-100"
+                {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                  {% assign add_to_cart_btn_lbl =  'products.product.out_of_stock' | t %}
+                {% else %}
+                  {% assign add_to_cart_btn_lbl =  'products.product.add_to_cart' | t %}
+                {% endif %}>
+                <span>{{ add_to_cart_btn_lbl }}</span>
+              </button>
+            </div>
+          </div>
+          <div class="product-form-checkout w-100 mt-16">
+            {{ form | payment_button }}
+          </div>
+        </div>
+      {%- endform -%}
+    </div>
+    <div class="product__form pt-16 pb-16 d-none">
+      <sht-prd-frm class="sht-product__form d-grid gap-12" data-section="{{ section.id }}">
+        {%- form 'product', product -%}
+          <div class="form__field">
+            <input type="hidden" class="form__control" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+          </div>
+          <div class="product-form__buttons d-grid gap-12" style="--gtc-equal: 2">
+            <div class="gap-16 d-flex w-100">
+              <div class="product__quantity">
+                <label class="field__label visually-hidden" for="productQuantityInput-{{ section.id }}">{{ 'products.product.quantity.label' | t }}:</label>
+                <sht-qty-inp class="field_quantity d-inline-flex middle-xs center-xs d-none-important">
+                  <button class="no-js-hidden js-quantity-btn js-quantity-btn-minus btn btn-icon btn-large btn-plain" aria-label="{{ 'accessibility.minus' | t }}" name="minus" data-name="minus" type="button">{%- render 'icon-minus', size: 20 -%}</button>
+                  <input
+                    class="js-quantity-input qty-element input-number b-zero ta-center"
+                    type="number"
+                    name="quantity"
+                    aria-label="{{ 'products.product.quantity.input_label' | t: product: product.title | escape }}"
+                    id="productQuantityInput-{{ section.id }}"
+                    min="1"
+                    value="1"
+                    form="{{ product_form_id }}"
+                  >
+                  <button class="no-js-hidden js-quantity-btn js-quantity-btn-plus btn btn-icon btn-large btn-plain" aria-label="{{ 'accessibility.plus' | t }}" name="plus" data-name="plus" type="button">{%- render 'icon-plus', size: 20 -%}</button>
+                </sht-qty-inp>
+              </div>
+              <button type="submit" name="add" class="js-product-form-submit-btn product-btn-atc btn btn-large w-100"
+                {% if product.selected_or_first_available_variant.available == false %}
+                  disabled
+                  {% assign add_to_cart_btn_lbl =  'products.product.sold_out' | t %}
+                {% else %}
+                  {% assign add_to_cart_btn_lbl =  'products.product.add_to_cart' | t %}
+                {% endif %}>
+                <span class="p-relative d-flex middle-xs center-xs ta-center">
+                  <span class="js-product-form-submit-btn-text">
+                    {{ add_to_cart_btn_lbl }}
+                  </span>
+                </span>
+              </button>
+            </div>
+            {{ form | payment_button }}
+          </div>
+        {%- endform -%}
+      </sht-prd-frm>
+    </div>
+    <div class="product__info product__extra-info">
+      {% capture accordion_icons %}
+        <span class="zi-1">
+          {% render 'icon-plus', class: 'accordion__icon--plus p-absolute top-0 right-0' %}
+          {% render 'icon-minus', class: 'accordion__icon--minus p-absolute top-0 right-0' %}
+        </span>
+      {% endcapture %}
+      <div class="accordion__item js-accordion-item pt-16">
+        <div class="accordion__header">
+          <button class="js-accordion-trigger c-pointer p-relative d-flex between-xs middle-xs w-100 p-zero pb-12 pt-12" open>
+            <span class="fz16 fw-700">Size and fit</span>
+            <span class="accordion__toggle">
+              {{ accordion_icons }}
+            </span>
+          </button>
+        </div>
+        <div class="accordion-content open fz14 mb-16">
+          <p>Fits true to size. Measurements included in our </p>
+        </div>
+      </div>
+      <div class="accordion__item js-accordion-item">
+        <div class="accordion__header">
+          <button class="js-accordion-trigger c-pointer p-relative d-flex between-xs middle-xs w-100 p-zero pb-12 pt-12">
+            <span class="fz16 fw-700">Care information</span>
+            <span class="accordion__toggle">
+              {{ accordion_icons }}
+            </span>
+          </button>
+        </div>
+        <div class="accordion-content fz14 mb-16">
+          <p>For best results, dry clean or hand wash with natural detergent. Machine wash on delicate. Lay flat to dry. </p>
+        </div>
+      </div>
+      <div class="accordion__item js-accordion-item">
+        <div class="accordion__header">
+          <button class="js-accordion-trigger c-pointer p-relative d-flex between-xs middle-xs w-100 p-zero pb-12 pt-12">
+            <span class="fz16 fw-700">Shipping and returns</span>
+            <span class="accordion__toggle">
+              {{ accordion_icons }}
+            </span>
+          </button>
+        </div>
+        <div class="accordion-content fz14 mb-16">
+          <p>
+            Shipping<br>
+            Orders can take 2-3 business days to process before shipping. As soon as your package has left our warehouse, you will receive a confirmation by email.
+            <br>
+            Returns<br>
+            If for any reason you are unhappy with your purchase we offer returns for store credit within 7 days of delivery. If 7 days have passed since your purchase has been delivered, unfortunately, we are unable to offer you a credit or exchange.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%- render 'cart-drawer' -%}
+{%- render 'main-product-gallery-dialog' -%}
+
+<script>
+  var product = {{ product | json }};
+  var moneyFormat = "{{ shop.money_format }}";
+</script>
+
+{% schema %}
+{
+  "name": "Main Product",
+  "settings": [
+
+  ]
+}
+{% endschema %}

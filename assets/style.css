@@ -17,11 +17,14 @@ p {
   font-size: calc( var(--font-body-size) + 0.2rem);
   line-height: 1.5;
 }
+button {
+  background-color: transparent;
+  border: none;
+}
 .btn {
   cursor: pointer;
   border: 0;
-  border-radius: 100px;
-  padding: 0 24px;
+  /* padding: 0 24px; */
   font-family: var(--font-heading-family);
   font-weight: var(--font-heading-weight);
   transition: all 0.3s ease;
@@ -181,6 +184,7 @@ textarea {
   padding: 12px 12px 12px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
+.overlay,
 .drawer__overlay {
   position: fixed;
   z-index: 1;
@@ -195,6 +199,7 @@ textarea {
   visibility: hidden;
   max-width: 100%;
 }
+.overlay.active,
 .drawer__overlay.active {
   opacity: 1;
   visibility: visible;
@@ -236,6 +241,10 @@ textarea {
 .scroll-up .header-wrapper {
   transform: none;
   backdrop-filter: blur(10px);
+}
+.black {
+  color: #000;
+  background: #fff;
 }
 
 @media (min-width: 1025px) {
@@ -313,9 +322,6 @@ textarea {
 @media (min-width: 769px) {
   .section {
     padding: 80px 0
-  }
-  .btn:not(.btn-link) {
-    padding: 0 32px;
   }
   .btn-link {
     --form-field: 44px;
