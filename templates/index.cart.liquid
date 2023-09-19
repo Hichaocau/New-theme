@@ -1,0 +1,113 @@
+
+{% layout none %}
+
+<div class="cart-header d-flex between-xs middle-xs black pb-8 p-20">
+  <div class="cart-count d-flex middle-xs">
+    <h3 class="pr-12">Cart</h3>({{ cart.item_count }} items)
+  </div>
+  <button class="cart-btn-close js-cart-drawer-btn-close c-pointer">{% render 'icon-close' %}</button>
+</div>
+<div class="cart-drawer__message black pr-20 pl-20">
+  <p>FREE shipping will be applied at checkout</p>
+  <progress class="cart__message__progress" value="1360" max="100"></progress>
+</div>
+<div clas="cart-update">
+  <button class="cart-update-btn">Click</button>
+  <div class="cart-update-text">Melting Protection</div>
+  <div id="cartUpdate">+$5</div>
+</div>
+<div class="cart-body black pt-16 pb-16 pl-20 pr-20">
+  <form action="{{ routes.cart_url }}" id="cart-drawer-form" class="cart-drawer__form" method="post">
+    <div class="cart-drawer__product">
+      <ul class="ls-none mt-32 cart-drawer__product-list">
+        {%- for item in cart.items -%}
+          <li data-id="{{ item.id }}" class="d-flex mb-32 between-xs cart-drawer__product-item">
+            <div class="cart-drawer__product__media p-relative">
+              <img src="{{ item.image| image_url: width: master }}" style="width:100px; object-fit:cover;"/>
+            </div>
+            <div class="cart-drawer__product-info flex-1 ml-30">
+              <a href="{{ item.url }}" class="wb-break-word h5 fw-700 d-block mb-8">{{ item.product.title | escape }}</a>
+              {%- for option in item.options_with_values -%}
+                <div class="cart-drawer__item__option">
+                  <span class="d-inline-block">{{ option.name }}:</span>
+                  <span class="d-inline-block">{{ option.value }}</span>
+                </div>
+              {%- endfor -%}
+              <div class="d-flex middle-xs pt-8">
+                <label class="visually-hidden" for="cartDrawerQuantityField-{{ item.index | plus: 1 }}">{{ 'products.product.quantity.label' | t }}</label>
+                <sht-cart-drwr-qty-inp class="field_quantity d-inline-flex middle-xs center-xs btn-small mr-12">
+                  <button class="js-cart-drawer-quantity-btn js-cart-drawer-quantity-btn-minus js-cart-drawer-btn btn btn-plain btn-small btn-icon" name="minus" data-name="minus" type="button">
+                    {% render 'icon-minus', size: 20 %}
+                  </button>
+                  <input class="js-cart-drawer-quantity-input input-number qty-element--sm btn-plain ta-center" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}" id="cartDrawerQuantityField-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                  <button class="js-cart-drawer-quantity-btn js-cart-drawer-quantity-btn-plus js-cart-drawer-btn btn btn-plain btn-small btn-icon" name="plus" data-name="plus" type="button">
+                    {% render 'icon-plus', size: 20 %}
+                  </button>
+                </sht-cart-drwr-qty-inp>
+                <sht-cart-drwr-rmv-btn id="cartDrawerRemove-{{ item.index | plus: 1 }}" data-index="{{ item.index | plus: 1 }}">
+                  <button class="js-cart-drawer-delete-btn js-cart-drawer-btn c-pointer" aria-label="{{ 'sections.cart.remove_title' | t: title: item.title }}" type="button">
+                    Remove
+                  </button>
+                </sht-cart-drwr-rmv-btn>
+              </div>
+            </div>
+            <div class="cart-drawer__product-prices">
+              <span class="d-block fw-700 color-accent-bg-1">
+                {{ item.original_line_price | money_with_currency }}
+              </span>
+              <s class="color-light subtext d-block"> {{ item.variant.compare_at_price | times: item.quantity | money_with_currency }}</s>
+
+               {%- comment -%} {% if item.variant.compare_at_price > item.variant.price %}
+                <s class="color-light subtext d-block"> {{ item.variant.compare_at_price | money_with_currency }}</s>
+              {% endif %} {%- endcomment -%}
+            </div>
+          </li>
+        {%- endfor -%}
+
+        <!-- <li class="d-flex mb-32 middle-xs">
+          <div class="cart-drawer__product__media p-relative">
+            <img src="../assets/bgc2.png" style="width: 100px; height: 100px; object-fit: cover;">
+          </div>
+          <div class="cart-drawer__product-info ml-36">
+            <a href="{{ product.url }}" class="wb-break-word h5 fw-700 d-block mb-8">{{ product.title | escape }}</a>
+            <span class="d-block">Size: S</span>
+            <span class="d-block">Color: Orange</span>
+            <span class="d-block cart-drawer__product-prices--new">
+              {{ product.selected_or_first_available_variant.price | money }}
+            </span>
+            <s class="d-block cart-drawer__product-prices--last">
+              {{ product.selected_or_first_available_variant.compare_at_price | money }}
+            </s>
+          </div>
+        </li> -->
+      </ul>
+    </div>
+  </form>
+  <div class="cart-drawer__note field mt-8 d-block">
+    <label class="d-flex between-xs pt-12 pb-12" for="cartDrawerNote">Is this a gift? Add a note.</label>
+    <textarea id="cartDrawerNote" class="w-100 textarea" name="note" placeholder="{{ 'general.cart.cart_note_placeholder' | t }}" rows="5">{{ cart.note }}</textarea>
+  </div>
+</div>
+<div class="cart-footer black p-20">
+  <div class="d-flex middle-xs between-xs mb-24">
+    <h2 class="h5 m-zero">{{ 'general.cart.total' | t }}</h2>
+    <p class="m-zero h5 color-accent-bg-1">{{ cart.total_price | money_with_currency }}</p>
+  </div>
+  <div class="cart-footer-checkout">
+    <button type="submit" class="js-cart-drawer-submit-btn btn w-100" name="checkout" form="cart-drawer-form" {% if cart == empty %} disabled{% endif %}>
+      {{ 'sections.cart.checkout' | t }}
+    </button>
+    <small class="tax-note subtext d-block ta-center mt-12">
+      {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+        {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+      {%- elsif cart.taxes_included -%}
+        {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+      {%- elsif shop.shipping_policy.body != blank -%}
+        {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+      {%- else -%}
+        {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+      {%- endif -%}
+    </small>
+  </div>
+</div>
+<script src="{{ 'main-cart.js' | asset_url }}" defer="defer"></script>

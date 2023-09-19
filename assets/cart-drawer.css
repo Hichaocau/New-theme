@@ -67,3 +67,11 @@ sht-cart-drwr-qty-inp {
   border: 1px solid #000;
   margin-right: 8px;
 }
+.cart-drawer__main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cart-body {
+  flex: 1;
+}

@@ -1,1 +1,26 @@
-<h1 class="hello">hello</h1>
+{{ 'dialog.css' | asset_url | stylesheet_tag }}
+
+<div class="dialog-main p-fixed left-0 top-0 h-100 w-100 zi-3 o-auto d-none">
+  <div class="dialog__header dialog--no-title d-flex between-xs p-sticky top-0">
+    <button type="button" class="js-dialog-close-btn btn">
+      {%- render 'icon-close' -%}
+    </button>
+  </div>
+  <div class="dialog__body js-dialog-body p-relative">
+    <div class="dialog-gallery-slides d-flex">
+      {%- for media in product.media -%}
+        <div class="dialog-gallery-slide">
+          <img class="dialog-gallery-slide-img d-block" src="{{ media | image_url: width: media.width }}"/>
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="slide__pagination js-slide-pagination p-absolute d-flex w-100 between-xs middle-xs bottom-0 no-js-hidden">
+      <button type="button" data-step="1" class="js-slide-prev-btn center-xs middle-xs btn btn-large btn-icon p-zero" aria-label="{{ 'accessibility.previous_slide' | t }}" name="previous">
+        {% render 'icon-chevron-left' %}
+      </button>
+      <button type="button" data-step="1" class="js-slide-next-btn center-xs middle-xs btn btn-large btn-icon p-zero" aria-label="{{ 'accessibility.next_slide' | t }}" name="next">
+        {% render 'icon-chevron-right' %}
+      </button>
+    </div>
+  </div>
+</div>

@@ -23,7 +23,6 @@
     <h1 class="h2 pt-24 pb-16">{{ product.title | escape }}</h1>
     <div class="product__info product__prices pb-16 js-product-prices">
       <div class="d-flex top-xs fw-wrap c-gap-12">
-        {%- comment -%} {% render 'product-price', product: product, target: product.selected_or_first_available_variant, price_style: 'h4 pr-12' %} {%- endcomment -%}
         <p class="product-price mt-4 mb-4 d-inline-block h4 pr-12">
           {{ product.selected_or_first_available_variant.price | money }}
         </p>
@@ -182,8 +181,8 @@
     <div class="product__info product__extra-info">
       {% capture accordion_icons %}
         <span class="zi-1">
-          {% render 'icon-plus', class: 'accordion__icon--plus p-absolute top-0 right-0' %}
-          {% render 'icon-minus', class: 'accordion__icon--minus p-absolute top-0 right-0' %}
+          {% render 'icon-plus', class: 'accordion__icon--plus p-absolute top-10 right-0' %}
+          {% render 'icon-minus', class: 'accordion__icon--minus p-absolute top-10 right-0' %}
         </span>
       {% endcapture %}
       <div class="accordion__item js-accordion-item pt-16">

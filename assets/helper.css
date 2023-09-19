@@ -161,6 +161,9 @@ h5 {
 .ml-6 {
   margin-left: 6px;
 }
+.ml-30 {
+  margin-left: 30px;
+}
 .ml-36 {
   margin-left: 36px;
 }
@@ -464,6 +467,9 @@ a[href^="/"].hide-no-link ~ span,
 }
 .top-0 {
   top: 0;
+}
+.top-10 {
+  top: 10px;
 }
 .left-0 {
   left: 0;
