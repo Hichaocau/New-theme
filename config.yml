@@ -1,0 +1,6 @@
+development:
+  password: shptka_bdbc68fab873b30cedf9d8dfb60b4f93
+  theme_id: "136897200349"
+  store: hichaocau.myshopify.com
+  ignore_files:
+    - config.yml

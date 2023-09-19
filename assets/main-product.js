@@ -10,7 +10,6 @@ const btnPlus = document.querySelector(".quantity-selector-plus");
 const btnMinus = document.querySelector(".quantity-selector-minus");
 const valueInput = document.querySelector(".quantity-input");
 
-
 class updateProduct {
   constructor() {
     this.items =
@@ -276,12 +275,12 @@ class slideShow {
   }
   handleEvent() {
     this.btnClose.addEventListener("click", () => {
-      this.dialogMain.classList.add("d-none");
+      this.dialogMain.classList.add("d-none-important");
       body.classList.toggle('o-hidden');
     });
     this.productMedias.forEach(productMedia => {
       productMedia.addEventListener('click', () => {
-        this.dialogMain.classList.remove("d-none");
+        this.dialogMain.classList.remove("d-none-important");
         body.classList.toggle('o-hidden');
       })
     });

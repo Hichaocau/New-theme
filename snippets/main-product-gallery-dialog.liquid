@@ -1,7 +1,7 @@
 {{ 'dialog.css' | asset_url | stylesheet_tag }}
 
-<div class="dialog-main p-fixed left-0 top-0 h-100 w-100 zi-3 o-auto d-none">
-  <div class="dialog__header dialog--no-title d-flex between-xs p-sticky top-0">
+<div class="dialog-main p-fixed left-0 top-0 h-100 w-100 zi-3 o-auto d-none-important">
+  <div class="dialog__header dialog--no-title d-flex p-sticky top-0 end-xs">
     <button type="button" class="js-dialog-close-btn btn">
       {%- render 'icon-close' -%}
     </button>
@@ -14,7 +14,7 @@
         </div>
       {%- endfor -%}
     </div>
-    <div class="slide__pagination js-slide-pagination p-absolute d-flex w-100 between-xs middle-xs bottom-0 no-js-hidden">
+    <div class="slide__pagination js-slide-pagination p-absolute d-flex between-xs middle-xs bottom-0 no-js-hidden">
       <button type="button" data-step="1" class="js-slide-prev-btn center-xs middle-xs btn btn-large btn-icon p-zero" aria-label="{{ 'accessibility.previous_slide' | t }}" name="previous">
         {% render 'icon-chevron-left' %}
       </button>
